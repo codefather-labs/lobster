@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+# Lobster v0.1 alpha
+### Idiomatic Python to (**Python**, C, Rust, Go) transpiler
+#### Inspired by [Pyrs](https://github.com/konchunas/pyrs) project
 
-You can use the [editor on GitHub](https://github.com/codefather-labs/lobster/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+![logo](https://img.freepik.com/free-vector/hand-drawn-crawfish-illustration_23-2149249045.jpg?w=2000)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Lobster's original idea is about to write low-level, high-performance extensions of the Python language in Python itself, without knowledge of C/Cython, [CAPI](https://docs.python.org/3/c-api/index.html), [CFFI](https://cffi.readthedocs.io/en/latest/#) and else.
+In simple terms, you write slow Python code, and Lobster will traspile your Python source code into C, Rust, Go source code. It will neatly collect a tree of all calls, variables, functions, classes, modules, and compile a structural tree for them for the target source code. Some implementations allow for instant integration of extensions into your Python Environment. For example, Rust has [Pyo3](https://pyo3.rs/v0.16.4/) and [Maturin](https://github.com/PyO3/maturin), and C has [CFFI](https://cffi.readthedocs.io/en/latest/#), [CAPI](https://docs.python.org/3/c-api/index.html), [Cython](https://cython.org/)
+---
+#### Lobster based on [AST (Abstract Syntax Tree)](https://docs.python.org/3/library/ast.html) and it extends the standard Visitor structure
+---
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/codefather-labs/lobster/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+## Futures
+- Parsing DSL Tree
+- Carefule spawning [lexing](https://docs.python.org/3/reference/lexical_analysis.html) and [grammar](https://docs.python.org/3/reference/grammar.html)

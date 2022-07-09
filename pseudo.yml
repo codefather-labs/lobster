@@ -1,0 +1,49 @@
+$interfaces$:
+  $base$:
+    $headers$:
+      - accessibility[public, private, protected, virtual] !
+      - static ?
+      - type[void, integer, string, array] !
+      - value ? # default value
+      - return[void, integer, string, array] !
+
+    $constructor$: $empty$ ?
+    $destructor$: $empty$ ?
+    $data$: $empty$ ?
+    $implementations$: $empty$ ?
+
+  $variable$:
+    $headers$: $interfaces.base.headers$ !
+    $constructor$: $file$(cvar.yml)$ ?
+    $destructor$: $file$(dvar.yml)$ ?
+
+  $struct$:
+    $headers$: $interfaces.base.headers$ !
+    $constructor$: $file$(cstruct.yml)$ ?
+    $destructor$: $file$(dstruct.yml)$ ?
+    $data$: $empty$ ?
+    $implementations$: $file$(istruct.yml)$ ?
+
+# $define$:
+#   $variables$:
+#     $STACK_SIZE$: $interfaces.variable(public, integer, 256, integer)$
+#     $STACK$: $interfaces.variable(public, array[integer][$STACK_SIZE$], [], array)$
+
+#   $structs$:
+#     $one$:
+#       $base$: $interfaces.base.headers$
+#       $constructor$: $empty$
+#       $destructor$: $empty$
+#       $data$: $empty$
+#       $implementations$: $empty$
+
+#     $two$:
+#       $base$: $interfaces.base.headers$
+#       $constructor$: $empty$
+#       $destructor$: $empty$
+#       $data$: $empty$
+#       $implementations$: $empty$
+
+$stack$:
+  $stack_frame$:
+    $evaluation_area$: .

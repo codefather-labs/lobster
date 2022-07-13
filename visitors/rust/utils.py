@@ -1,7 +1,7 @@
 import sys
 import ast
 
-from lobster.visitors.c import CVisitor
+from visitors.c import CVisitor
 
 
 def add_imports(node):

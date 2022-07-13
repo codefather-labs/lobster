@@ -1,8 +1,8 @@
 import ast
 from copy import deepcopy
 
-from lobster.visitors.base import BaseModuleVisitor
-from lobster.visitors.rust.utils import is_void_function, get_id, \
+from visitors.base import BaseModuleVisitor
+from visitors.rust.utils import is_void_function, get_id, \
     is_class_or_module, is_list, DeclarationExtractor, defined_before, is_mutable
 
 

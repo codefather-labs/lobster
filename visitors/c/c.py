@@ -1,6 +1,6 @@
 import ast
 
-from lobster.visitors.base import BaseModuleVisitor
+from visitors.base import BaseModuleVisitor
 
 
 class CVisitor(BaseModuleVisitor):

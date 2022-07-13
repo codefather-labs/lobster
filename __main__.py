@@ -28,7 +28,9 @@ def main():
     with args.infile as infile:
         source = infile.read()
 
-    visitor = PythonVisitor(module_name="func.py")
+    visitor = PythonVisitor(
+        module_name=str(infile.name).split("/")[-1]
+    )
 
     tree: ast.Module = \
         visitor.parse(source, args.infile.name, args.mode,

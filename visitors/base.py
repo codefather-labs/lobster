@@ -90,7 +90,7 @@ class BaseModuleVisitor(ast.NodeVisitor):
         symbol_type = type(node)
         return BaseModuleVisitor.symbols[symbol_type]
 
-    def visit(self, node, level=None):
+    def visit(self, node, level: int = 0):
         if type(node) in self.symbols:
             return self.python_symbol(node)
         else:

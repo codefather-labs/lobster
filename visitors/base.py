@@ -112,13 +112,17 @@ class BaseModuleVisitor(ast.NodeVisitor):
         if indent is not None:
             level += 1
 
+        def save_visited_instruction(i):
+            self.__instructions.append(self.visit(i, level))
+
         for field, value in ast.iter_fields(node):
             if isinstance(value, list):
                 for item in value:
                     if isinstance(item, AST):
-                        self.__instructions.append(self.visit(item, level))
+                        save_visited_instruction(item)
+
             elif isinstance(value, AST):
-                self.__instructions.append(self.visit(value, level))
+                save_visited_instruction(value)
 
     def transpile(self, node: ast.Module, indent=None):
         return self.generic_visit(node, indent=indent)

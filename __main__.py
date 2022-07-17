@@ -1,4 +1,6 @@
 import ast
+import os.path
+from io import BufferedReader, FileIO
 
 from visitors.python import PythonVisitor
 
@@ -29,7 +31,8 @@ def main():
         source = infile.read()
 
     visitor = PythonVisitor(
-        module_name=str(infile.name).split("/")[-1]
+        module=os.path.abspath(infile.name),
+        rebuild_imports_tree=True
     )
 
     tree: ast.Module = \

@@ -13,7 +13,3 @@ from sources.first_level_package.second_level_package.second_level_handler_packa
 
 def first_level_handler(arg: str):
     return second_level_handler(arg)
-
-from sources.first_level_package.first_level_handler_package import first_level_handler
-
-first_level_handler()

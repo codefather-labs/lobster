@@ -25,6 +25,7 @@ def main():
                              'column offsets')
     parser.add_argument('-i', '--indent', type=int, default=4,
                         help='indentation of nodes (number of spaces)')
+    parser.add_argument('--output', type=str, required=True, help='Output directory')
     args = parser.parse_args()
 
     with args.infile as infile:
@@ -32,6 +33,7 @@ def main():
 
     visitor = PythonVisitor(
         module=os.path.abspath(infile.name),
+        result_dir_path=args.output,
         rebuild_imports_tree=True
     )
 

@@ -109,9 +109,6 @@ class BaseModuleVisitor(ast.NodeVisitor):
         if not isinstance(node, AST):
             raise TypeError('expected AST, got %r' % node.__class__.__name__)
 
-        if indent is not None:
-            level += 1
-
         def save_visited_instruction(i):
             self.__instructions.append(self.visit(i, level))
 

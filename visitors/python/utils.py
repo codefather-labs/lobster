@@ -88,64 +88,13 @@ def parse_decorators_list(node: ast.FunctionDef, level: int):
 def parse_func_body(visitor: BaseModuleVisitor, node: ast.FunctionDef, level: int = 0):
     body = ""
     for element in node.body:
-
-        element: Union[ast.Expr, ast.Pass, ast.FunctionDef]
-
-        # TODO remake for visit_Expr
-        if isinstance(element, ast.Expr):
-            element: ast.Expr
-
-            # TODO remake for visit_Ellipsis
-            if isinstance(element.value, ast.Ellipsis):
-                element: ast.Ellipsis
-                body = "%s..." % get_tab(visitor.TAB, level, inner=True)
-
-        # TODO remake for visit_Pass
-        elif isinstance(element, ast.Pass):
-            element: ast.Pass
-            body += "%spass" % get_tab(visitor.TAB, level, inner=True)
-
-        # TODO remake for visit_FunctionDef
-        elif isinstance(element, ast.FunctionDef):
-            deeper_indent_level = add_indent_level(level)
-            body += visitor.visit_FunctionDef(
-                element, deeper_indent_level
-            )
-
-        # TODO remake for visit_Assign
-        # elif isinstance(element, ast.Assign):
-        #     ...
-        #
-        # TODO remake for visit_AsyncFunctionDef
-        # elif isinstance(element, ast.AsyncFunctionDef):
-        #     ...
-        #
-        # TODO remake for visit_For
-        # elif isinstance(element, ast.For):
-        #     ...
-        #
-        # TODO remake for visit_While
-        # elif isinstance(element, ast.While):
-        #     ...
-        #
-        # TODO remake for visit_Import
-        # elif isinstance(element, ast.Import):
-        #     ...
-        #
-        # TODO remake for visit_ImportFrom
-        # elif isinstance(element, ast.ImportFrom):
-        #     ...
-
-        # expr_value: ast.Constant = expr.value
-        # el: ast.Ellipsis = expr_value.value
-        # print(el)
-        body += "\n"
-
-    level = remove_indent_level(level)
-    return body, level
+        # Общий случай — применяем отступ к любой строке
+        line = visitor.visit(element, level)
+        body += f"{line}\n"
+    return body.rstrip(), level
 
 
-def parse_func_args(visitor: BaseModuleVisitor, node: ast.FunctionDef):
+def parse_func_args(visitor: BaseModuleVisitor, node: ast.FunctionDef, level: int = 0):
     args: ast.arguments = node.args
     result_args = []
     for arg in reversed(args.args):
@@ -154,7 +103,7 @@ def parse_func_args(visitor: BaseModuleVisitor, node: ast.FunctionDef):
 
         annotation: Optional[str] = None
         if arg.annotation:
-            annotation: str = arg.annotation.id
+            annotation: str = visitor.visit(arg.annotation, level) if arg.annotation else None
 
         default_value = ''
 
